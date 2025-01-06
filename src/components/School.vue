@@ -16,9 +16,20 @@
                 name: '北京小学校'
             };
         },
+        methods:
+        {
+            receiveName: function (topic, data)
+            {
+                console.log('School组件收到数据：', data)
+            }
+        },
         mounted: function ()
         {
-            pubsub.publish('sName', {a: 1, b: '这是b'})
+            this.pubId = pubsub.subscribe('sName', this.receiveName); // 订阅 sName topic
+        },
+        beforeDestroy: function ()
+        {
+            pubsub.unsubscribe(this.pubId); // 取消订阅
         }
     }
 </script>
