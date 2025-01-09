@@ -1,35 +1,32 @@
 <template>
     <div>
-        这是学校组件，学校的名称是：{{name}}
+        <button @click="sendReq">点我发送请求</button>
     </div>
 </template>
 
 <script>
-    import pubsub from 'pubsub-js'; // 引入pubsub-js
+    import axios from "axios";
 
     export default
     {
         name: 'School',
-        data: function ()
-        {
-            return {
-                name: '北京小学校'
-            };
-        },
         methods:
         {
-            receiveName: function (topic, data)
+            sendReq: function ()
             {
-                console.log('School组件收到数据：', data)
+                axios.get('/abc/mycon/curt') // 请求自己所在的服务器，可以不用加协议、主机、端口，会自己加上.
+                .then
+                (
+                    resp =>
+                    {
+                        console.log('请求成功：', resp)
+                    },
+                    err =>
+                    {
+                        console.log('请求失败：', err)
+                    }
+                );
             }
-        },
-        mounted: function ()
-        {
-            this.pubId = pubsub.subscribe('sName', this.receiveName); // 订阅 sName topic
-        },
-        beforeDestroy: function ()
-        {
-            pubsub.unsubscribe(this.pubId); // 取消订阅
         }
     }
 </script>
