@@ -1,32 +1,19 @@
 <template>
     <div>
-        <button @click="sendReq">点我发送请求</button>
+        学校名称是：{{name}} <br>
+        <slot>这是默认值，如果没有传进来的的话，就显示默认值.</slot>
     </div>
 </template>
 
 <script>
-    import axios from "axios";
-
     export default
     {
         name: 'School',
-        methods:
+        data: function ()
         {
-            sendReq: function ()
-            {
-                axios.get('/abc/mycon/curt') // 请求自己所在的服务器，可以不用加协议、主机、端口，会自己加上.
-                .then
-                (
-                    resp =>
-                    {
-                        console.log('请求成功：', resp)
-                    },
-                    err =>
-                    {
-                        console.log('请求失败：', err)
-                    }
-                );
-            }
+            return {
+                name: '双山完小'
+            };
         }
     }
 </script>
