@@ -14,6 +14,10 @@
             return {
                 name: '双山完小'
             };
+        },
+        mounted: function ()
+        {
+            console.log('学校组件值查看：', this);
         }
     }
 </script>
