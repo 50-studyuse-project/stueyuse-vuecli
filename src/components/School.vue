@@ -1,11 +1,15 @@
 <template>
     <div>
-        学校名称是：{{name}} <br>
-        <slot>这是默认值，如果没有传进来的的话，就显示默认值.</slot>
+        学校名称是：{{name}}
+
+        <hr>
+        数据：{{zs}} {{long}}
     </div>
 </template>
 
 <script>
+    import {mapState} from 'vuex';
+
     export default
     {
         name: 'School',
@@ -15,9 +19,9 @@
                 name: '双山完小'
             };
         },
-        mounted: function ()
+        computed:
         {
-            console.log('学校组件值查看：', this);
+            ...mapState(['zs', 'long'])
         }
     }
 </script>
