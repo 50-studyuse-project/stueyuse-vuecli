@@ -1,9 +1,13 @@
 <template>
     <div>
-        学校名称是：{{name}}
+        这是学校组件，学校名称是：{{name}}
 
         <hr>
-        数据：{{zs}} {{long}}
+        {{sum}}
+
+        <hr>
+        <button @click="invockTest1">调用test1</button>
+        <button @click="invockTest2">调用test2</button>
     </div>
 </template>
 
@@ -21,7 +25,22 @@
         },
         computed:
         {
-            ...mapState(['zs', 'long'])
+            ...mapState('my1', ['sum'])
+        },
+        methods:
+        {
+            invockTest1: function ()
+            {
+                this.$store.commit('my1/TEST1', 11);
+            },
+            invockTest2: function ()
+            {
+                this.$store.dispatch('test2', '张大傻');
+            },
+        },
+        mounted: function ()
+        {
+            console.log('School组件：', this.$store);
         }
     }
 </script>
