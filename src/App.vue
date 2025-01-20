@@ -1,16 +1,27 @@
 <template>
-    <School></School>
+    <div>
+        <router-link to="/mSchool">显示学校组件</router-link>
+        <router-link to="/mStudent/aa/bb">显示学生组件</router-link>
+
+        <hr/>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-    import School from './components/School.vue';
-
     export default
     {
         name: 'App',
-        components: {School}
+        mounted: function()
+        {
+            console.log('数据：', this);
+        }
     }
 </script>
 
-<style>
+<style scoped>
+    .router-link-active
+    {
+        background-color: aqua;
+    }
 </style>
